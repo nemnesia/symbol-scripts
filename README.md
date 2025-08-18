@@ -77,3 +77,46 @@ bash download-peers-p2p.sh [mainnet|testnet]
 ```
 
 引数を省略した場合は mainnet になります。
+
+## Mongo DB 8 インストール
+
+公開鍵のインポート
+
+```bash
+curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | \
+  sudo gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg \
+  --dearmor
+```
+
+リストファイルを作成する
+
+```bash
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu noble/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
+```
+
+MongoDB のインストール
+
+```bash
+sudo apt update
+sudo apt install -y mongodb-org
+```
+
+## Mongo DB 8 アンインストール
+
+MongoDB のアンインストール
+
+```bash
+sudo apt purge mongodb-org
+```
+
+リストファイルを削除する
+
+```bash
+sudo rm /etc/apt/sources.list.d/mongodb-org-8.0.list
+```
+
+公開鍵を削除する
+
+```bash
+sudo rm /usr/share/keyrings/mongodb-server-8.0.gpg
+```
