@@ -8,7 +8,7 @@ set -e
 # This script configures and builds the Symbol catapult binaries using CMake and Ninja.
 #
 # Usage:
-#   ./3_build_symbol.sh
+#   ./3_build_symbol.sh <symbol-directory>
 # =============================================
 
 
