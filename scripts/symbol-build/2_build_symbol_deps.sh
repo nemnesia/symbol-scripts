@@ -1,17 +1,27 @@
+
 #!/bin/sh
 set -e
 
+# =============================================
+# Symbol Node Build: Dependency Installer
+#
+# This script builds and installs the required dependencies for Symbol node using installDepsLocal.py.
+#
+# Usage:
+#   ./2_build_symbol_deps.sh
+# =============================================
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 
-mkdir -p ${ROOT_DIR}/_symbol/client/catapult/_temp
-cd ${ROOT_DIR}/_symbol/client/catapult
+# Create temp directory and move to catapult client directory
+mkdir -p ./symbol/client/catapult/_temp
+cd ./symbol/client/catapult
 
-PYTHONPATH="${ROOT_DIR}/_symbol/jenkins/catapult/" \
-  python3 "${ROOT_DIR}/_symbol/jenkins/catapult/installDepsLocal.py" \
+
+# Run the dependency installer script
+PYTHONPATH="./symbol/jenkins/catapult/" \
+  python3 "./symbol/jenkins/catapult/installDepsLocal.py" \
   --target "./_temp" \
-  --versions "${ROOT_DIR}/_symbol/jenkins/catapult/versions.properties" \
+  --versions "./symbol/jenkins/catapult/versions.properties" \
   --build \
   --download
 

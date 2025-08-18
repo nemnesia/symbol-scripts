@@ -17,32 +17,32 @@ unzip sai.zip
 rm *.zip
 
 # seed
-rm -rf ${ROOT_DIR}/opt/symbol-node/seed/*
-cp -r ${ROOT_DIR}/temp/networks-mainnet/seed ${ROOT_DIR}/opt/symbol-node/seed/mainnet
-cp -r ${ROOT_DIR}/temp/networks-sai/seed ${ROOT_DIR}/opt/symbol-node/seed/testnet
+mkdir -p /opt/symbol-node/seed
+cp -r ${ROOT_DIR}/temp/networks-mainnet/seed /opt/symbol-node/seed/mainnet
+cp -r ${ROOT_DIR}/temp/networks-sai/seed /opt/symbol-node/seed/testnet
 
 # mongo
-rm -rf ${ROOT_DIR}/opt/symbol-node/scripts/mongo/*
-cp -r ${ROOT_DIR}/temp/networks-mainnet/mongo ${ROOT_DIR}/opt/symbol-node/scripts
+mkdir -p /opt/symbol-node/scripts/mongo
+cp -r ${ROOT_DIR}/temp/networks-mainnet/mongo /opt/symbol-node/scripts
 
 # resources
-rm -rf ${ROOT_DIR}/opt/symbol-node/resources-sample/*
-cp -r ${ROOT_DIR}/temp/networks-mainnet/resources ${ROOT_DIR}/opt/symbol-node/resources-sample/mainnet-dual
-cp -r ${ROOT_DIR}/temp/networks-mainnet/resources ${ROOT_DIR}/opt/symbol-node/resources-sample/mainnet-peer
-cp -r ${ROOT_DIR}/temp/networks-sai/resources ${ROOT_DIR}/opt/symbol-node/resources-sample/testnet-dual
-cp -r ${ROOT_DIR}/temp/networks-sai/resources ${ROOT_DIR}/opt/symbol-node/resources-sample/testnet-peer
+mkdir -p /opt/symbol-node/resources-sample
+cp -r ${ROOT_DIR}/temp/networks-mainnet/resources /opt/symbol-node/resources-sample/mainnet-dual
+cp -r ${ROOT_DIR}/temp/networks-mainnet/resources /opt/symbol-node/resources-sample/mainnet-peer
+cp -r ${ROOT_DIR}/temp/networks-sai/resources /opt/symbol-node/resources-sample/testnet-dual
+cp -r ${ROOT_DIR}/temp/networks-sai/resources /opt/symbol-node/resources-sample/testnet-peer
 
 # rest
-rm -rf ${ROOT_DIR}/opt/symbol-node/rest/resources-sample/*
-cp -r ${ROOT_DIR}/temp/networks-mainnet/rest/rest.json ${ROOT_DIR}/opt/symbol-node/rest/resources-sample/rest.mainnet.json
-cp -r ${ROOT_DIR}/temp/networks-mainnet/rest/rest-light.json ${ROOT_DIR}/opt/symbol-node/rest/resources-sample/rest-light.mainnet.json
-cp -r ${ROOT_DIR}/temp/networks-sai/rest/rest.json ${ROOT_DIR}/opt/symbol-node/rest/resources-sample/rest.testnet.json
-cp -r ${ROOT_DIR}/temp/networks-sai/rest/rest-light.json ${ROOT_DIR}/opt/symbol-node/rest/resources-sample/rest-light.testnet.json
+mkdir -p /opt/symbol-node/rest/resources-sample
+cp -r ${ROOT_DIR}/temp/networks-mainnet/rest/rest.json /opt/symbol-node/rest/resources-sample/rest.mainnet.json
+cp -r ${ROOT_DIR}/temp/networks-mainnet/rest/rest-light.json /opt/symbol-node/rest/resources-sample/rest-light.mainnet.json
+cp -r ${ROOT_DIR}/temp/networks-sai/rest/rest.json /opt/symbol-node/rest/resources-sample/rest.testnet.json
+cp -r ${ROOT_DIR}/temp/networks-sai/rest/rest-light.json /opt/symbol-node/rest/resources-sample/rest-light.testnet.json
 
 
 
 # resources修正
-CATAPULT_RESOURCES=${ROOT_DIR}/opt/symbol-node/resources-sample
+CATAPULT_RESOURCES=/opt/symbol-node/resources-sample
 # config-extensions-server.extensions.extension.filespooling
 crudini --set ${CATAPULT_RESOURCES}/mainnet-dual/config-extensions-server.properties extensions extension.filespooling "true"
 crudini --set ${CATAPULT_RESOURCES}/mainnet-peer/config-extensions-server.properties extensions extension.filespooling "false"
@@ -145,7 +145,7 @@ crudini --set ${CATAPULT_RESOURCES}/testnet-dual/config-user.properties storage 
 crudini --set ${CATAPULT_RESOURCES}/testnet-peer/config-user.properties storage votingKeysDirectory "/opt/symbol-node/votingkeys"
 
 # rest.db.url
-REST_RESOURCES=${ROOT_DIR}/opt/symbol-node/rest/resources-sample
+REST_RESOURCES=/opt/symbol-node/rest/resources-sample
 jq '.db.url = "mongodb://127.0.0.1:27017/"' ${REST_RESOURCES}/rest.mainnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest.mainnet.json
 jq '.db.url = "mongodb://127.0.0.1:27017/"' ${REST_RESOURCES}/rest.testnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest.testnet.json
 # rest.apiNode.host
