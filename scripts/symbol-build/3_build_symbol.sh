@@ -12,19 +12,23 @@ set -e
 # =============================================
 
 
+# Get the symbol directory path from the command line argument
+if [ $# -lt 1 ]; then
+  echo "Usage: $0 <symbol-directory>"
+  exit 1
+fi
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-ROOT_DIR="$(dirname "$SCRIPT_DIR")"
+SYMBOL_DIR="$1"
 
 
 # Create build directory and move to it
-mkdir -p ${ROOT_DIR}/_symbol/client/catapult/_build
-cd ${ROOT_DIR}/_symbol/client/catapult/_build
+mkdir -p ${SYMBOL_DIR}/client/catapult/_build
+cd ${SYMBOL_DIR}/client/catapult/_build
 
 
 # Configure the build with CMake
 BOOST_ROOT="$(realpath ../_temp/boost)" \
-  cmake ${ROOT_DIR}/_symbol/client/catapult \
+  cmake ${SYMBOL_DIR}/client/catapult \
     -DENABLE_TESTS=OFF \
     -DCMAKE_BUILD_TYPE=RelWithDebInfo \
     -DCMAKE_PREFIX_PATH="$(realpath ../_temp/facebook);$(realpath ../_temp/google);$(realpath ../_temp/mongodb);$(realpath ../_temp/zeromq);$(realpath ../_temp/openssl)" \
