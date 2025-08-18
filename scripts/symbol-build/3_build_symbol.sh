@@ -28,7 +28,7 @@ cd ${SYMBOL_DIR}/client/catapult/_build
 
 # Configure the build with CMake
 BOOST_ROOT="$(realpath ../_temp/boost)" \
-  cmake ${SYMBOL_DIR}/client/catapult \
+  cmake .. \
     -DENABLE_TESTS=OFF \
     -DCMAKE_BUILD_TYPE=RelWithDebInfo \
     -DCMAKE_PREFIX_PATH="$(realpath ../_temp/facebook);$(realpath ../_temp/google);$(realpath ../_temp/mongodb);$(realpath ../_temp/zeromq);$(realpath ../_temp/openssl)" \
