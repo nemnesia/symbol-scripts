@@ -1,0 +1,18 @@
+[Unit]
+Description=Symbol MongoDB Initialize (run once after mongo)
+Wants=network.target
+After=network.target symbol-mongo.service
+Requires=symbol-mongo.service
+
+[Service]
+Type=oneshot
+User=symbol
+Group=symbol
+WorkingDirectory=/opt/symbol-node
+ExecStart=/opt/symbol-node/scripts/mongo_check_and_prepare.sh
+StandardOutput=journal
+StandardError=journal
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

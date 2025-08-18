@@ -1,0 +1,22 @@
+[Unit]
+Description=Symbol Recovery
+
+[Service]
+Type=oneshot
+ExecCondition=/bin/sh -c '/usr/bin/test -f /opt/symbol-node/data/data/server.lock || /usr/bin/test -f /opt/symbol-node/data/data/broker.lock'
+ExecStart=/opt/symbol-node/bin/catapult.recovery .
+KillSignal=SIGINT
+Restart=on-failure
+RestartSec=2
+TimeoutStopSec=60
+User=symbol
+Group=symbol
+WorkingDirectory=/opt/symbol-node
+Environment="LD_LIBRARY_PATH=/opt/symbol-node/deps"
+StandardOutput=journal
+StandardError=journal
+LimitNOFILE=65536
+UMask=077
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,23 @@
+[Unit]
+Description=Symbol Broker
+Requires=network.target symbol-mongo.service
+After=network.target symbol-mongo.service
+
+[Service]
+Type=idle
+ExecStart=/opt/symbol-node/bin/catapult.broker .
+KillSignal=SIGINT
+Restart=on-failure
+RestartSec=2
+TimeoutStopSec=20
+User=symbol
+Group=symbol
+WorkingDirectory=/opt/symbol-node
+Environment="LD_LIBRARY_PATH=/opt/symbol-node/deps"
+StandardOutput=journal
+StandardError=journal
+LimitNOFILE=65536
+UMask=077
+
+[Install]
+WantedBy=multi-user.target
