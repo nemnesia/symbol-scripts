@@ -19,9 +19,9 @@ cd ./symbol/client/catapult
 
 # Run the dependency installer script
 PYTHONPATH="./symbol/jenkins/catapult/" \
-  python3 "./symbol/jenkins/catapult/installDepsLocal.py" \
+  python3 "../../jenkins/catapult/installDepsLocal.py" \
   --target "./_temp" \
-  --versions "./symbol/jenkins/catapult/versions.properties" \
+  --versions "../../jenkins/catapult/versions.properties" \
   --build \
   --download
 
