@@ -5,8 +5,8 @@ After=network.target
 
 [Service]
 Type=forking
-PIDFile=/run/mongo/symbol-db.pid
-ExecStart=/usr/bin/mongod --dbpath=data/mongo --wiredTigerCacheSizeGB 2 --pidfilepath /run/symbol-mongo.pid --fork --syslog
+PIDFile=/opt/symbol-node/symbol-mongo.pid
+ExecStart=/usr/bin/mongod --dbpath=data/mongo --wiredTigerCacheSizeGB 2 --pidfilepath /opt/symbol-node/symbol-mongo.pid --fork --syslog
 KillSignal=SIGINT
 User=symbol
 Group=symbol
