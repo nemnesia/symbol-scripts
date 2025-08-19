@@ -120,3 +120,21 @@ sudo rm /etc/apt/sources.list.d/mongodb-org-8.0.list
 ```bash
 sudo rm /usr/share/keyrings/mongodb-server-8.0.gpg
 ```
+
+### ログイン出来ないユーザー作成
+
+```bash
+sudo useradd -m -s /usr/sbin/nologin hogehoge
+```
+
+### ログイン可能に切り替える
+
+```bash
+sudo usermod -s /bin/bash hogehoge
+```
+
+### ログイン不可に切り替える
+
+```bash
+sudo usermod -s /usr/sbin/nologin hogehoge
+```

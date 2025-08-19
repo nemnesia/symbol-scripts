@@ -202,6 +202,10 @@ jq '.deployment.lastUpdatedDate = "n/a"' ${REST_RESOURCES}/rest-light.mainnet.js
 jq '.deployment.lastUpdatedDate = "n/a"' ${REST_RESOURCES}/rest-light.testnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest-light.testnet.json
 
 
+cp -r ${ROOT_DIR}/scripts/*.bash /opt/symbol-node/scripts
+cp -r ${ROOT_DIR}/scripts/symbol-build/etc/systemd/system/*.service /etc/systemd/system
+
+
 rm -rf ${ROOT_DIR}/temp
 
 

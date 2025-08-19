@@ -46,5 +46,39 @@ cp -r ${SYMBOL_DIR}/client/catapult/_temp/zeromq/lib/*.so* /opt/symbol-node/deps
 # Copy rest directory
 cp -r ${SYMBOL_DIR}/client/rest /opt/symbol-node
 
+# link
+for f in "/opt/symbol-node/bin/"*; do
+  if [ -f "$f" ] && [ ! -L "$f" ]; then
+    echo "patchelf --set-rpath '\$ORIGIN/../deps' $f"
+    patchelf --set-rpath '$ORIGIN/../deps' "$f"
+  fi
+done
+
+for f in "/opt/symbol-node/deps/"*.so*; do
+  if [ -f "$f" ] && [ ! -L "$f" ]; then
+    echo "patchelf --set-rpath '\$ORIGIN' $f"
+    patchelf --set-rpath '$ORIGIN' "$f"
+  fi
+done
+
+
+mkdir -p /opt/symbol-node/logs
+mkdir -p /opt/symbol-node/data/data
+mkdir -p /opt/symbol-node/data/mongo
+mkdir -p /opt/symbol-node/scripts
+mkdir -p /opt/symbol-node/certificates
+mkdir -p /opt/symbol-node/votingkeys
+
+chown symbol:symbol /opt/symbol-node/logs
+chown symbol:symbol /opt/symbol-node/data/data
+chown symbol:symbol /opt/symbol-node/data/mongo
+chown symbol:symbol /opt/symbol-node/scripts
+chown symbol:symbol /opt/symbol-node/certificates
+chown symbol:symbol /opt/symbol-node/votingkeys
+
+chmod 700 /opt/symbol-node/certificates
+chmod 700 /opt/symbol-node/votingkeys
+
+
 echo ""
 echo "complete"
