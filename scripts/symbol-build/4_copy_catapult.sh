@@ -70,11 +70,7 @@ mkdir -p /opt/symbol-node/certificates
 mkdir -p /opt/symbol-node/votingkeys
 
 chown symbol:symbol /opt/symbol-node/logs
-chown symbol:symbol /opt/symbol-node/data/data
-chown symbol:symbol /opt/symbol-node/data/mongo
-chown symbol:symbol /opt/symbol-node/scripts
-chown symbol:symbol /opt/symbol-node/certificates
-chown symbol:symbol /opt/symbol-node/votingkeys
+chown symbol:symbol -R /opt/symbol-node/data
 
 chmod 700 /opt/symbol-node/certificates
 chmod 700 /opt/symbol-node/votingkeys
