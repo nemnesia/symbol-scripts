@@ -2,7 +2,6 @@
 Description=Symbol MongoDB Initialize (run once after mongo)
 Wants=network.target
 After=network.target symbol-mongo.service
-Requires=symbol-mongo.service
 
 [Service]
 Type=oneshot

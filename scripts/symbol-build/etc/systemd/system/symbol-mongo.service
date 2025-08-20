@@ -2,11 +2,12 @@
 Description=Symbol MongoDB
 Wants=network.target
 After=network.target
+Requires=network.target symbol-mongo-init.service
 
 [Service]
 Type=forking
-PIDFile=/opt/symbol-node/symbol-mongo.pid
-ExecStart=/usr/bin/mongod --dbpath=data/mongo --wiredTigerCacheSizeGB 2 --pidfilepath /opt/symbol-node/symbol-mongo.pid --fork --syslog
+PIDFile=/run/symbol-node/symbol-mongo.pid
+ExecStart=/usr/bin/mongod --dbpath=data/mongo --wiredTigerCacheSizeGB 2 --pidfilepath /run/symbol-node/symbol-mongo.pid --fork --syslog
 KillSignal=SIGINT
 User=symbol
 Group=symbol
