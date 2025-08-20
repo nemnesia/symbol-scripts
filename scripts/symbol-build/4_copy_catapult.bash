@@ -72,6 +72,7 @@ mkdir -p /opt/symbol-node/certificates
 mkdir -p /opt/symbol-node/votingkeys
 mkdir -p /opt/symbol-node/seed
 mkdir -p /opt/symbol-node/scripts/mongo
+mkdir -p /opt/symbol-node/resources
 mkdir -p /opt/symbol-node/resources-sample
 mkdir -p /opt/symbol-node/resources-sample/mainnet-dual
 mkdir -p /opt/symbol-node/resources-sample/mainnet-peer
@@ -88,6 +89,7 @@ chmod 700 /opt/symbol-node/votingkeys
 
 
 cp -r ${ROOT_DIR}/symbol-build/etc/systemd/system/*.service /etc/systemd/system
+systemctl daemon-reload
 
 
 echo ""
