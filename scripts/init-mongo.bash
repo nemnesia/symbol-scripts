@@ -7,8 +7,6 @@ MONGO_PORT="27017"
 MONGO_DB="catapult"
 PREPARE_SCRIPT="/opt/symbol-node/scripts/mongo/mongoDbPrepare.js"
 
-export HOME=/home/symbol
-
 
 # mongosh接続確認
 mongosh --quiet --host "$MONGO_HOST" --port "$MONGO_PORT" --eval "db.stats()" > /dev/null 2>&1
