@@ -68,7 +68,12 @@ mkdir -p /opt/symbol-node/data/mongo
 mkdir -p /opt/symbol-node/scripts
 mkdir -p /opt/symbol-node/certificates
 mkdir -p /opt/symbol-node/votingkeys
+mkdir -p /opt/symbol-node/seed
+mkdir -p /opt/symbol-node/scripts/mongo
+mkdir -p /opt/symbol-node/resources-sample
+mkdir -p /opt/symbol-node/rest/resources-sample
 mkdir -p /run/symbol-node
+
 
 chown symbol:symbol -R /opt/symbol-node
 

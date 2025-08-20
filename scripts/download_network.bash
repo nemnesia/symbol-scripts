@@ -17,23 +17,19 @@ unzip sai.zip
 rm *.zip
 
 # seed
-mkdir -p /opt/symbol-node/seed
 cp -r /tmp/symbol-scripts/networks-mainnet/seed /opt/symbol-node/seed/mainnet
 cp -r /tmp/symbol-scripts/networks-sai/seed /opt/symbol-node/seed/testnet
 
 # mongo
-mkdir -p /opt/symbol-node/scripts/mongo
 cp -r /tmp/symbol-scripts/networks-mainnet/mongo /opt/symbol-node/scripts
 
 # resources
-mkdir -p /opt/symbol-node/resources-sample
 cp -r /tmp/symbol-scripts/networks-mainnet/resources/* /opt/symbol-node/resources-sample/mainnet-dual
 cp -r /tmp/symbol-scripts/networks-mainnet/resources/* /opt/symbol-node/resources-sample/mainnet-peer
 cp -r /tmp/symbol-scripts/networks-sai/resources/* /opt/symbol-node/resources-sample/testnet-dual
 cp -r /tmp/symbol-scripts/networks-sai/resources/* /opt/symbol-node/resources-sample/testnet-peer
 
 # rest
-mkdir -p /opt/symbol-node/rest/resources-sample
 cp -r /tmp/symbol-scripts/networks-mainnet/rest/rest.json /opt/symbol-node/rest/resources-sample/rest.mainnet.json
 cp -r /tmp/symbol-scripts/networks-mainnet/rest/rest-light.json /opt/symbol-node/rest/resources-sample/rest-light.mainnet.json
 cp -r /tmp/symbol-scripts/networks-sai/rest/rest.json /opt/symbol-node/rest/resources-sample/rest.testnet.json
