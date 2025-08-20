@@ -5,7 +5,9 @@
 MONGO_HOST="localhost"
 MONGO_PORT="27017"
 MONGO_DB="catapult"
-PREPARE_SCRIPT="/opt/symbol-node/script/mongo/mongoDbPrepare.js"
+PREPARE_SCRIPT="/opt/symbol-node/scripts/mongo/mongoDbPrepare.js"
+
+export HOME=/home/symbol
 
 
 # mongosh接続確認
@@ -15,8 +17,8 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-# catapultDBの存在チェック
-DB_EXISTS=$(mongosh --quiet --host "$MONGO_HOST" --port "$MONGO_PORT" --eval "db.getMongo().getDBNames().indexOf('$MONGO_DB') >= 0")
+# catapultDBの存在チェック（listDatabases方式）
+DB_EXISTS=$(mongosh --quiet --host "$MONGO_HOST" --port "$MONGO_PORT" --eval "db.adminCommand({ listDatabases: 1 }).databases.map(db => db.name).includes('$MONGO_DB')")
 
 if [ "$DB_EXISTS" != "true" ]; then
   echo "Database $MONGO_DB does not exist. Running prepare script..."
