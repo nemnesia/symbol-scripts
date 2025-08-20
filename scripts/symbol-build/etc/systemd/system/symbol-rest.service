@@ -5,7 +5,7 @@ After=network.target symbol-mongo.service
 
 [Service]
 Type=idle
-ExecStart=/home/symbol/.volta/bin/npm start ./resources/rest.json
+ExecStart=/usr/local/node-users/symbol/node/bin/node src/index.js ./resources/rest.json
 Restart=on-failure
 RestartSec=2
 User=symbol
