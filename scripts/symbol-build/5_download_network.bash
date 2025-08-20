@@ -200,7 +200,6 @@ jq '.deployment.lastUpdatedDate = "n/a"' ${REST_RESOURCES}/rest-light.testnet.js
 
 
 cp -r ${ROOT_DIR}/*.bash /opt/symbol-node/scripts
-cp -r ${ROOT_DIR}/symbol-build/etc/systemd/system/*.service /etc/systemd/system
 
 
 rm -rf /tmp/symbol-scripts

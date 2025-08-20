@@ -14,6 +14,9 @@ set -e
 # If not specified, the script searches for catapult/rest directories under the current directory.
 # =============================================
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+ROOT_DIR="$(dirname "$SCRIPT_DIR")"
+
 
 # Get the symbol directory path from the command line argument
 if [ $# -lt 1 ]; then
@@ -82,6 +85,9 @@ chown symbol:symbol -R /opt/symbol-node
 
 chmod 700 /opt/symbol-node/certificates
 chmod 700 /opt/symbol-node/votingkeys
+
+
+cp -r ${ROOT_DIR}/symbol-build/etc/systemd/system/*.service /etc/systemd/system
 
 
 echo ""
