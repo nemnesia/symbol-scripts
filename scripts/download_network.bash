@@ -5,6 +5,7 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 
+rm -rf /tmp/symbol-scripts
 mkdir -p /tmp/symbol-scripts
 cd /tmp/symbol-scripts
 

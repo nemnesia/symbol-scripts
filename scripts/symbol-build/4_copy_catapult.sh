@@ -71,6 +71,10 @@ mkdir -p /opt/symbol-node/votingkeys
 mkdir -p /opt/symbol-node/seed
 mkdir -p /opt/symbol-node/scripts/mongo
 mkdir -p /opt/symbol-node/resources-sample
+mkdir -p /opt/symbol-node/resources-sample/mainnet-dual
+mkdir -p /opt/symbol-node/resources-sample/mainnet-peer
+mkdir -p /opt/symbol-node/resources-sample/testnet-dual
+mkdir -p /opt/symbol-node/resources-sample/testnet-peer
 mkdir -p /opt/symbol-node/rest/resources-sample
 mkdir -p /run/symbol-node
 
