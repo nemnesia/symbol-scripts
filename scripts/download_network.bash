@@ -5,8 +5,8 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 
-mkdir -p ${ROOT_DIR}/temp
-cd ${ROOT_DIR}/temp
+mkdir -p /tmp/symbol-scripts
+cd /tmp/symbol-scripts
 
 curl -sOL https://github.com/symbol/networks/archive/refs/heads/mainnet.zip
 curl -sOL https://github.com/symbol/networks/archive/refs/heads/sai.zip
@@ -18,26 +18,26 @@ rm *.zip
 
 # seed
 mkdir -p /opt/symbol-node/seed
-cp -r ${ROOT_DIR}/temp/networks-mainnet/seed /opt/symbol-node/seed/mainnet
-cp -r ${ROOT_DIR}/temp/networks-sai/seed /opt/symbol-node/seed/testnet
+cp -r /tmp/symbol-scripts/networks-mainnet/seed /opt/symbol-node/seed/mainnet
+cp -r /tmp/symbol-scripts/networks-sai/seed /opt/symbol-node/seed/testnet
 
 # mongo
 mkdir -p /opt/symbol-node/scripts/mongo
-cp -r ${ROOT_DIR}/temp/networks-mainnet/mongo /opt/symbol-node/scripts
+cp -r /tmp/symbol-scripts/networks-mainnet/mongo /opt/symbol-node/scripts
 
 # resources
 mkdir -p /opt/symbol-node/resources-sample
-cp -r ${ROOT_DIR}/temp/networks-mainnet/resources/* /opt/symbol-node/resources-sample/mainnet-dual
-cp -r ${ROOT_DIR}/temp/networks-mainnet/resources/* /opt/symbol-node/resources-sample/mainnet-peer
-cp -r ${ROOT_DIR}/temp/networks-sai/resources/* /opt/symbol-node/resources-sample/testnet-dual
-cp -r ${ROOT_DIR}/temp/networks-sai/resources/* /opt/symbol-node/resources-sample/testnet-peer
+cp -r /tmp/symbol-scripts/networks-mainnet/resources/* /opt/symbol-node/resources-sample/mainnet-dual
+cp -r /tmp/symbol-scripts/networks-mainnet/resources/* /opt/symbol-node/resources-sample/mainnet-peer
+cp -r /tmp/symbol-scripts/networks-sai/resources/* /opt/symbol-node/resources-sample/testnet-dual
+cp -r /tmp/symbol-scripts/networks-sai/resources/* /opt/symbol-node/resources-sample/testnet-peer
 
 # rest
 mkdir -p /opt/symbol-node/rest/resources-sample
-cp -r ${ROOT_DIR}/temp/networks-mainnet/rest/rest.json /opt/symbol-node/rest/resources-sample/rest.mainnet.json
-cp -r ${ROOT_DIR}/temp/networks-mainnet/rest/rest-light.json /opt/symbol-node/rest/resources-sample/rest-light.mainnet.json
-cp -r ${ROOT_DIR}/temp/networks-sai/rest/rest.json /opt/symbol-node/rest/resources-sample/rest.testnet.json
-cp -r ${ROOT_DIR}/temp/networks-sai/rest/rest-light.json /opt/symbol-node/rest/resources-sample/rest-light.testnet.json
+cp -r /tmp/symbol-scripts/networks-mainnet/rest/rest.json /opt/symbol-node/rest/resources-sample/rest.mainnet.json
+cp -r /tmp/symbol-scripts/networks-mainnet/rest/rest-light.json /opt/symbol-node/rest/resources-sample/rest-light.mainnet.json
+cp -r /tmp/symbol-scripts/networks-sai/rest/rest.json /opt/symbol-node/rest/resources-sample/rest.testnet.json
+cp -r /tmp/symbol-scripts/networks-sai/rest/rest-light.json /opt/symbol-node/rest/resources-sample/rest-light.testnet.json
 
 
 
@@ -206,7 +206,7 @@ cp -r ${ROOT_DIR}/*.bash /opt/symbol-node/scripts
 cp -r ${ROOT_DIR}/symbol-build/etc/systemd/system/*.service /etc/systemd/system
 
 
-rm -rf ${ROOT_DIR}/temp
+rm -rf /tmp/symbol-scripts
 
 
 echo ""
