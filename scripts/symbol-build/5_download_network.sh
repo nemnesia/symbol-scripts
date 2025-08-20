@@ -27,10 +27,10 @@ cp -r ${ROOT_DIR}/temp/networks-mainnet/mongo /opt/symbol-node/scripts
 
 # resources
 mkdir -p /opt/symbol-node/resources-sample
-cp -r ${ROOT_DIR}/temp/networks-mainnet/resources /opt/symbol-node/resources-sample/mainnet-dual
-cp -r ${ROOT_DIR}/temp/networks-mainnet/resources /opt/symbol-node/resources-sample/mainnet-peer
-cp -r ${ROOT_DIR}/temp/networks-sai/resources /opt/symbol-node/resources-sample/testnet-dual
-cp -r ${ROOT_DIR}/temp/networks-sai/resources /opt/symbol-node/resources-sample/testnet-peer
+cp -r ${ROOT_DIR}/temp/networks-mainnet/resources/* /opt/symbol-node/resources-sample/mainnet-dual
+cp -r ${ROOT_DIR}/temp/networks-mainnet/resources/* /opt/symbol-node/resources-sample/mainnet-peer
+cp -r ${ROOT_DIR}/temp/networks-sai/resources/* /opt/symbol-node/resources-sample/testnet-dual
+cp -r ${ROOT_DIR}/temp/networks-sai/resources/* /opt/symbol-node/resources-sample/testnet-peer
 
 # rest
 mkdir -p /opt/symbol-node/rest/resources-sample

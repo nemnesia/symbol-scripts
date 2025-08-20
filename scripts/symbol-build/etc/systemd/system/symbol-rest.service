@@ -1,4 +1,3 @@
-
 [Unit]
 Description=Symbol Rest Gateway
 Requires=network.target symbol-mongo.service
@@ -6,7 +5,7 @@ After=network.target symbol-mongo.service
 
 [Service]
 Type=idle
-ExecStart=/usr/bin/npm start ./resources/rest.json
+ExecStart=/home/symbol/.volta/bin/npm start ./resources/rest.json
 Restart=on-failure
 RestartSec=2
 User=symbol
