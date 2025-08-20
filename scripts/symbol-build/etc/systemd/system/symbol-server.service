@@ -1,8 +1,7 @@
 [Unit]
 Description=Symbol Server
-Wants=symbol-recovery.service
+Requires=network.target symbol-recovery.service
 After=network.target symbol-recovery.service
-Requires=network.target
 
 [Service]
 Type=idle
