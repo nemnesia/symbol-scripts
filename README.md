@@ -89,18 +89,6 @@ sudo useradd symbol
 sudo passwd symbol
 ```
 
-#### ログイン不可に切り替える
-
-```bash
-sudo usermod -s /usr/sbin/nologin hogehoge
-```
-
-#### ログイン可能に切り替える
-
-```bash
-sudo usermod -s /bin/bash hogehoge
-```
-
 ### 2. Node.js インストール
 
 v20 をインストールする。
@@ -291,7 +279,9 @@ sudo systemctl start symbol-broker
 sudo systemctl start symbol-server
 ```
 
-## xx. Mongo DB 8 アンインストール
+## XX. メモ
+
+### Mongo DB 8 アンインストール
 
 MongoDB のアンインストール
 
@@ -309,4 +299,18 @@ sudo rm /etc/apt/sources.list.d/mongodb-org-8.0.list
 
 ```bash
 sudo rm /usr/share/keyrings/mongodb-server-8.0.gpg
+```
+
+### ユーザー関連
+
+#### ログイン不可に切り替える
+
+```bash
+sudo usermod -s /usr/sbin/nologin hogehoge
+```
+
+#### ログイン可能に切り替える
+
+```bash
+sudo usermod -s /bin/bash hogehoge
 ```
