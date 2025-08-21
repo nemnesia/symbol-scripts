@@ -3,7 +3,6 @@ Description=Symbol Recovery
 
 [Service]
 Type=oneshot
-ExecCondition=/bin/sh -c '/usr/bin/test -f /opt/symbol-node/data/data/server.lock || /usr/bin/test -f /opt/symbol-node/data/data/broker.lock'
 ExecStart=/opt/symbol-node/bin/catapult.recovery .
 KillSignal=SIGINT
 Restart=on-failure
