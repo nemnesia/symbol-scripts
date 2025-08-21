@@ -78,26 +78,6 @@ bash download-peers-p2p.sh [mainnet|testnet]
 
 引数を省略した場合は mainnet になります。
 
-## Mongo DB 8 アンインストール
-
-MongoDB のアンインストール
-
-```bash
-sudo apt purge mongodb-org
-```
-
-リストファイルを削除する
-
-```bash
-sudo rm /etc/apt/sources.list.d/mongodb-org-8.0.list
-```
-
-公開鍵を削除する
-
-```bash
-sudo rm /usr/share/keyrings/mongodb-server-8.0.gpg
-```
-
 ## Symbol ノードインストール
 
 ### 1. ユーザー作成
@@ -309,4 +289,24 @@ sudo systemctl start symbol-mongo
 sudo systemctl start symbol-rest
 sudo systemctl start symbol-broker
 sudo systemctl start symbol-server
+```
+
+## xx. Mongo DB 8 アンインストール
+
+MongoDB のアンインストール
+
+```bash
+sudo apt purge mongodb-org
+```
+
+リストファイルを削除する
+
+```bash
+sudo rm /etc/apt/sources.list.d/mongodb-org-8.0.list
+```
+
+公開鍵を削除する
+
+```bash
+sudo rm /usr/share/keyrings/mongodb-server-8.0.gpg
 ```
