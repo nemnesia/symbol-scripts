@@ -40,6 +40,11 @@ cp -r /tmp/symbol-scripts/networks-sai/rest/rest-light.json /opt/symbol-node/res
 
 # resources修正
 CATAPULT_RESOURCES=/opt/symbol-node/resources-sample
+# config-database.database.databaseUri
+crudini --set ${CATAPULT_RESOURCES}/mainnet-dual/config-database.properties database databaseUri "mongodb://127.0.0.1:27017"
+crudini --set ${CATAPULT_RESOURCES}/mainnet-peer/config-database.properties database databaseUri "mongodb://127.0.0.1:27017"
+crudini --set ${CATAPULT_RESOURCES}/testnet-dual/config-database.properties database databaseUri "mongodb://127.0.0.1:27017"
+crudini --set ${CATAPULT_RESOURCES}/testnet-peer/config-database.properties database databaseUri "mongodb://127.0.0.1:27017"
 # config-extensions-server.extensions.extension.filespooling
 crudini --set ${CATAPULT_RESOURCES}/mainnet-dual/config-extensions-server.properties extensions extension.filespooling "true"
 crudini --set ${CATAPULT_RESOURCES}/mainnet-peer/config-extensions-server.properties extensions extension.filespooling "false"
