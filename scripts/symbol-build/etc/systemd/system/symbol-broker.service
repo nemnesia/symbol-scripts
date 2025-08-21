@@ -1,7 +1,7 @@
 [Unit]
 Description=Symbol Broker
-Requires=network.target symbol-mongo.service symbol-recovery.service
-After=network.target symbol-mongo.service symbol-recovery.service
+Requires=network.target symbol-mongo.service
+After=network.target symbol-mongo.service
 
 [Service]
 Type=idle
