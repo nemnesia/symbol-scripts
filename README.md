@@ -289,14 +289,7 @@ sudo ufw allow 3000
 
 `symbol-mongo` サービス起動後、自動的に MongoDB 初期化サービス `symbol-mongo-init` が起動します。
 
-```bash
-sudo systemctl start symbol-mongo
-sudo systemctl start symbol-rest
-sudo systemctl start symbol-broker
-sudo systemctl start symbol-server
-```
-
-再起動するとディレクトリが消えてしまうので、再起動時に作成するようにします。
+再起動すると PID 管理ディレクトリが消えてしまうので、再起動時に作成するようにします。
 
 ```bash
 sudo vi /etc/tmpfiles.d/symbol-node.conf
@@ -305,4 +298,15 @@ sudo vi /etc/tmpfiles.d/symbol-node.conf
 ```bash
 #Type   Path                    Mode    UID            GID          Age  Argument
 d       /run/symbol-node        0755    symbol         symbol       -
+```
+
+サービス起動
+
+起動はこの順番です。ただ、rest はいつでも良いです。停止はこの逆順となります。
+
+```bash
+sudo systemctl start symbol-mongo
+sudo systemctl start symbol-rest
+sudo systemctl start symbol-broker
+sudo systemctl start symbol-server
 ```
