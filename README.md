@@ -78,7 +78,69 @@ bash download-peers-p2p.sh [mainnet|testnet]
 
 引数を省略した場合は mainnet になります。
 
-## Mongo DB 8 インストール
+## Mongo DB 8 アンインストール
+
+MongoDB のアンインストール
+
+```bash
+sudo apt purge mongodb-org
+```
+
+リストファイルを削除する
+
+```bash
+sudo rm /etc/apt/sources.list.d/mongodb-org-8.0.list
+```
+
+公開鍵を削除する
+
+```bash
+sudo rm /usr/share/keyrings/mongodb-server-8.0.gpg
+```
+
+## Symbol ノードインストール
+
+### 1. ユーザー作成
+
+symbol ユーザーをログイン可能ユーザーで作成する。
+
+```bash
+sudo useradd symbol
+sudo passwd symbol
+```
+
+#### ログイン不可に切り替える
+
+```bash
+sudo usermod -s /usr/sbin/nologin hogehoge
+```
+
+#### ログイン可能に切り替える
+
+```bash
+sudo usermod -s /bin/bash hogehoge
+```
+
+### 2. Node.js インストール
+
+v20 をインストールする。
+
+```bash
+sudo mkdir -p /usr/local/node-users/symbol
+sudo chown -R symbol: /usr/local/node-users/symbol
+cd /usr/local/node-users/symbol
+sudo curl -OL https://nodejs.org/dist/v20.19.4/node-v20.19.4-linux-x64.tar.xz
+sudo tar -xJf node-v20.19.4-linux-x64.tar.xz
+sudo mv node-v20.19.4-linux-x64 node
+sudo chown -R symbol: node
+sudo rm node-v20.19.4-linux-x64.tar.xz
+```
+
+```bash
+sudo echo 'export PATH=/usr/local/node-users/symbol/node/bin:$PATH' | sudo tee -a /home/symbol/.bashrc
+```
+
+### 3. Mongo DB 8 インストール
 
 公開鍵のインポート
 
@@ -101,40 +163,135 @@ sudo apt update
 sudo apt install -y mongodb-org
 ```
 
-## Mongo DB 8 アンインストール
-
-MongoDB のアンインストール
+### 4. Symbol ノードビルド
 
 ```bash
-sudo apt purge mongodb-org
+git clone https://github.com/nemnesia/symbol-scripts.git
+git clone https://github.com/symbol/symbol.git -b client/catapult/v1.0.3.8
+./symbol-scripts/scripts/symbol-build/1_install_symbol_build_deps.bash
+./symbol-scripts/scripts/symbol-build/2_build_symbol_deps.bash symbol
+./symbol-scripts/scripts/symbol-build/3_build_symbol.bash symbol
+sudo ./symbol-scripts/scripts/symbol-build/4_copy_catapult.bash symbol
 ```
 
-リストファイルを削除する
-
 ```bash
-sudo rm /etc/apt/sources.list.d/mongodb-org-8.0.list
+sudo -u symbol ./symbol-scripts/scripts/5_download_network.bash
 ```
 
-公開鍵を削除する
+### 5. ノード証明書の作成
+
+ここから `symbol` ユーザーで作業する。
 
 ```bash
-sudo rm /usr/share/keyrings/mongodb-server-8.0.gpg
+su symbol
+cd /opt/symbol-node
 ```
 
-### ログイン出来ないユーザー作成
+新規作成
 
 ```bash
-sudo useradd -m -s /usr/sbin/nologin hogehoge
+./scripts/symbol-node-cert-gen.bash
 ```
 
-### ログイン可能に切り替える
+引き継ぐ
+`certificates` ディレクトリに `ca.key.pem`, `node.key.pem` を入れておくことで、その秘密鍵で証明書を作成します。
 
 ```bash
-sudo usermod -s /bin/bash hogehoge
+./scripts/hexstr2pem.bash certificates/ca.key.pem
+./scripts/hexstr2pem.bash certificates/node.key.pem
+./scripts/symbol-node-cert-gen.bash
 ```
 
-### ログイン不可に切り替える
+VRF, リモートの秘密鍵もこのタイミングで作っておきましょう。
 
 ```bash
-sudo usermod -s /usr/sbin/nologin hogehoge
+openssl genpkey -algorithm ed25519 -outform PEM -out certificates/vrf.key.pem
+openssl genpkey -algorithm ed25519 -outform PEM -out certificates/remote.key.pem
+```
+
+秘密鍵の値は `pem2hexstr.bash` で確認出来ます。
+
+```bash
+./scripts/pem2hexstr.bash certificates/vrf.key.pem
+./scripts/pem2hexstr.bash certificates/remote.key.pem
+```
+
+### 6. ノードの設定
+
+`resources-sample`から作成したいロールをコピーします。
+
+```bash
+cp resources-sample/testnet-dual/* resources
+```
+
+ノード情報を設定するために `resources/config-node.properties` を編集します。
+
+- host: 自 IP やドメインを設定
+- friendlyName: ノードの名前(なんでもいいです)※日本語不可
+
+```ini
+[localnode]
+
+host = myServerHostnameOrPublicIp
+friendlyName = myServerFriendlyName
+```
+
+ハーベストの設定を `resources/config-harvesting.properties` に設定します。
+
+- `harvesterSigningPrivateKey`: リモートアカウントの秘密鍵
+- `harvesterVrfPrivateKey`: VRF アカウントの秘密鍵
+- `enableAutoHarvesting`: `true`
+- `maxUnlockedAccounts`: 委任を受け入れる最大値
+- `delegatePrioritizationPolicy`: 委任者の最大を超えたときの追い出し挙動(`Importance` または `Age`)
+- `beneficiaryAddress`: ハーベスト報酬の受け取りアドレス
+
+```ini
+[harvesting]
+
+harvesterSigningPrivateKey = AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+harvesterVrfPrivateKey = AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+enableAutoHarvesting = false
+maxUnlockedAccounts = 10
+delegatePrioritizationPolicy = Importance
+beneficiaryAddress =
+```
+
+### 7. 接続ピアリストの作成
+
+```bash
+./scripts/download-peers-p2p.bash testnet
+```
+
+### 8. Rest の設定
+
+Node.js のモジュールをインストール。
+
+```bash
+cd rest
+npm i
+```
+
+設定ファイルコピー。
+
+```bash
+cp resources-sample/rest.testnet.json resources/rest.json
+```
+
+### 9. ポート開放
+
+```bash
+sudo ufw allow 7900
+sudo ufw allow 3000
+```
+
+### 10. サービス起動
+
+`symbol-mongo` サービス起動後、自動的にMongoDB初期化サービス `symbol-mongo-init` が起動します。 
+
+```bash
+sudo systemctl start symbol-mongo
+sudo systemctl start symbol-rest
+sudo systemctl start symbol-broker
+sudo systemctl start symbol-server
 ```
