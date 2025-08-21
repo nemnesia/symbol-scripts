@@ -56,6 +56,13 @@ for f in "/opt/symbol-node/bin/"*; do
   fi
 done
 
+for f in "/opt/symbol-node/lib/"*; do
+  if [ -f "$f" ] && [ ! -L "$f" ]; then
+    echo "patchelf --set-rpath '\$ORIGIN/../deps' $f"
+    patchelf --set-rpath '$ORIGIN/../deps' "$f"
+  fi
+done
+
 for f in "/opt/symbol-node/deps/"*.so*; do
   if [ -f "$f" ] && [ ! -L "$f" ]; then
     echo "patchelf --set-rpath '\$ORIGIN' $f"

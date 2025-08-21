@@ -153,21 +153,21 @@ jq '.apiNode.host = "127.0.0.1"' ${REST_RESOURCES}/rest-light.testnet.json > tmp
 # rest.apiNode.tlsClientCertificatePath
 jq '.apiNode.tlsClientCertificatePath = "../certificates/node.crt.pem"' ${REST_RESOURCES}/rest.mainnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest.mainnet.json
 jq '.apiNode.tlsClientCertificatePath = "../certificates/node.crt.pem"' ${REST_RESOURCES}/rest.testnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest.testnet.json
+jq '.apiNode.tlsClientCertificatePath = "../certificates/node.crt.pem"' ${REST_RESOURCES}/rest-light.mainnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest-light.mainnet.json
+jq '.apiNode.tlsClientCertificatePath = "../certificates/node.crt.pem"' ${REST_RESOURCES}/rest-light.testnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest-light.testnet.json
 # rest.apiNode.tlsClientKeyPath
 jq '.apiNode.tlsClientKeyPath = "../certificates/node.key.pem"' ${REST_RESOURCES}/rest.mainnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest.mainnet.json
 jq '.apiNode.tlsClientKeyPath = "../certificates/node.key.pem"' ${REST_RESOURCES}/rest.testnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest.testnet.json
 jq '.apiNode.tlsClientKeyPath = "../certificates/node.key.pem"' ${REST_RESOURCES}/rest-light.mainnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest-light.mainnet.json
 jq '.apiNode.tlsClientKeyPath = "../certificates/node.key.pem"' ${REST_RESOURCES}/rest-light.testnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest-light.testnet.json
 # rest.apiNode.tlsCaCertificatePath
-jq '.apiNode.tlsCaCertificatePath = "../certificates/ca.crt.pem"' ${REST_RESOURCES}/rest.mainnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest.mainnet.json
-jq '.apiNode.tlsCaCertificatePath = "../certificates/ca.crt.pem"' ${REST_RESOURCES}/rest.testnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest.testnet.json
-jq '.apiNode.tlsCaCertificatePath = "../certificates/ca.crt.pem"' ${REST_RESOURCES}/rest-light.mainnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest-light.mainnet.json
-jq '.apiNode.tlsCaCertificatePath = "../certificates/ca.crt.pem"' ${REST_RESOURCES}/rest-light.testnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest-light.testnet.json
+jq '.apiNode.tlsCaCertificatePath = "../certificates/ca.cert.pem"' ${REST_RESOURCES}/rest.mainnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest.mainnet.json
+jq '.apiNode.tlsCaCertificatePath = "../certificates/ca.cert.pem"' ${REST_RESOURCES}/rest.testnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest.testnet.json
+jq '.apiNode.tlsCaCertificatePath = "../certificates/ca.cert.pem"' ${REST_RESOURCES}/rest-light.mainnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest-light.mainnet.json
+jq '.apiNode.tlsCaCertificatePath = "../certificates/ca.cert.pem"' ${REST_RESOURCES}/rest-light.testnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest-light.testnet.json
 # rest.apiNode.inflationPropertyFilePath
 jq '.apiNode.inflationPropertyFilePath = "../resources/config-inflation.properties"' ${REST_RESOURCES}/rest.mainnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest.mainnet.json
 jq '.apiNode.inflationPropertyFilePath = "../resources/config-inflation.properties"' ${REST_RESOURCES}/rest.testnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest.testnet.json
-jq '.apiNode.inflationPropertyFilePath = "../resources/config-inflation.properties"' ${REST_RESOURCES}/rest-light.mainnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest-light.mainnet.json
-jq '.apiNode.inflationPropertyFilePath = "../resources/config-inflation.properties"' ${REST_RESOURCES}/rest-light.testnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest-light.testnet.json
 # rest.apiNode.networkPropertyFilePath
 jq '.apiNode.networkPropertyFilePath = "../resources/config-network.properties"' ${REST_RESOURCES}/rest.mainnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest.mainnet.json
 jq '.apiNode.networkPropertyFilePath = "../resources/config-network.properties"' ${REST_RESOURCES}/rest.testnet.json > tmp.json && mv tmp.json ${REST_RESOURCES}/rest.testnet.json
