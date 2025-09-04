@@ -85,7 +85,7 @@ bash download-peers-p2p.sh [mainnet|testnet]
 symbol ユーザーをログイン可能ユーザーで作成する。
 
 ```bash
-sudo useradd symbol
+sudo adduser symbol
 sudo passwd symbol
 ```
 
