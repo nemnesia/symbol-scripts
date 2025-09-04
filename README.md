@@ -140,10 +140,7 @@ git clone https://github.com/symbol/symbol.git -b client/catapult/v1.0.3.8
 ./symbol-scripts/scripts/symbol-build/2_build_symbol_deps.bash symbol
 ./symbol-scripts/scripts/symbol-build/3_build_symbol.bash symbol
 sudo ./symbol-scripts/scripts/symbol-build/4_copy_catapult.bash symbol
-```
-
-```bash
-sudo -u symbol ./symbol-scripts/scripts/symbol-build/5_download_network.bash
+sudo ./symbol-scripts/scripts/symbol-build/5_download_network.bash
 ```
 
 ### 5. ノード証明書の作成
