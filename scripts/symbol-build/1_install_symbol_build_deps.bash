@@ -14,8 +14,7 @@ set -e
 
 # Update package list and install required packages
 sudo apt update
-sudo apt -y install git gcc g++ curl libssl-dev libgtest-dev ninja-build pkg-config cmake
-
+sudo apt -y install git gcc g++ curl libssl-dev libgtest-dev ninja-build pkg-config cmake patchelf unzip crudini
 
 echo ""
 echo "complete"

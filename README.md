@@ -143,7 +143,7 @@ sudo ./symbol-scripts/scripts/symbol-build/4_copy_catapult.bash symbol
 ```
 
 ```bash
-sudo -u symbol ./symbol-scripts/scripts/5_download_network.bash
+sudo -u symbol ./symbol-scripts/scripts/symbol-build/5_download_network.bash
 ```
 
 ### 5. ノード証明書の作成
