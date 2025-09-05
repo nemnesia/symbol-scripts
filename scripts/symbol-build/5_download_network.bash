@@ -32,9 +32,9 @@ cp -r /tmp/symbol-scripts/networks-sai/resources/* /opt/symbol-node/resources-sa
 
 # rest
 cp -r /tmp/symbol-scripts/networks-mainnet/rest/rest.json /opt/symbol-node/rest/resources-sample/rest.mainnet.json
-cp -r /tmp/symbol-scripts/networks-mainnet/rest/rest-light.json /opt/symbol-node/rest/resources-sample/rest-light.mainnet.json
+cp -r /tmp/symbol-scripts/networks-mainnet/rest/rest-light.json /opt/symbol-node/rest/resources-sample/rest.light.mainnet.json
 cp -r /tmp/symbol-scripts/networks-sai/rest/rest.json /opt/symbol-node/rest/resources-sample/rest.testnet.json
-cp -r /tmp/symbol-scripts/networks-sai/rest/rest-light.json /opt/symbol-node/rest/resources-sample/rest-light.testnet.json
+cp -r /tmp/symbol-scripts/networks-sai/rest/rest-light.json /opt/symbol-node/rest/resources-sample/rest.light.testnet.json
 
 
 

@@ -5,7 +5,7 @@ After=network.target
 
 [Service]
 Type=idle
-ExecStart=/usr/local/node-users/symbol/node/bin/node src/index.js ./resources/rest-light.json
+ExecStart=/usr/local/node-users/symbol/node/bin/node src/index.js ./resources/rest.light.json
 Restart=on-failure
 RestartSec=2
 User=symbol
