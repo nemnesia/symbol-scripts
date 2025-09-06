@@ -4,7 +4,7 @@ Requires=network.target
 After=network.target
 
 [Service]
-Type=idle
+Type=simple
 ExecStart=/opt/symbol-node/bin/catapult.server .
 KillSignal=SIGINT
 Restart=on-failure
@@ -14,6 +14,7 @@ User=symbol
 Group=symbol
 WorkingDirectory=/opt/symbol-node
 Environment="LD_LIBRARY_PATH=/opt/symbol-node/deps"
+Environment="OPENSSL_MODULES=/opt/symbol-node/deps/ossl-modules"
 StandardOutput=journal
 StandardError=journal
 LimitNOFILE=65536

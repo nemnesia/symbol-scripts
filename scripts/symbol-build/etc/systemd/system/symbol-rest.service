@@ -4,7 +4,7 @@ Requires=network.target symbol-mongo.service
 After=network.target symbol-mongo.service
 
 [Service]
-Type=idle
+Type=simple
 ExecStart=/usr/local/node-users/symbol/node/bin/node src/index.js ./resources/rest.json
 Restart=on-failure
 RestartSec=2
